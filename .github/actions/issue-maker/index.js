@@ -1,6 +1,5 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
-const octokit = require("@octokit/rest");
 
 async function run() {
   try {
@@ -8,9 +7,11 @@ async function run() {
     const jokeBody = core.getInput("joke");
     const token = core.getInput("repo-token");
 
+    const octokit = github.getOctokit(token);
+    
     const newIssue = await octokit.issues.create({
-        repo: github.context.repo.repo,
-        owner: github.context.repo.owner,
+        repo: ${{ github.repository }},
+        owner: ${{ github.repository_owner }},
         title: issueTitle,
         body: jokeBody
     });

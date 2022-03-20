@@ -10,8 +10,8 @@ async function run() {
     const octokit = github.getOctokit(token);
     
     const newIssue = await octokit.issues.create({
-        repo: ${{ github.repository }},
-        owner: ${{ github.repository_owner }},
+        repo: github.com/john-h-luo/writing-javascript-actions,
+        owner: john-h-luo,
         title: issueTitle,
         body: jokeBody
     });
